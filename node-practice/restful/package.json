@@ -1,0 +1,15 @@
+{
+  "name": "restful",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-router": "^7.4.0",
+    "mongodb": "^3.2.7",
+    "mysql": "^2.17.1"
+  }
+}

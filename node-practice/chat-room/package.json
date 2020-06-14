@@ -1,0 +1,13 @@
+{
+  "name": "chat-room",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start":"nodemon server.js"
+  },
+  "dependencies": {
+    "mime": "^2.4.4",
+    "socket.io": "^2.2.0"
+  }
+}
