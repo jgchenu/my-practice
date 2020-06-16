@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PIXI application</title>
     <script src="https://www.kkkk1000.com/js/pixi4.8.2.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
   <body>
     <script type="text/javascript">
@@ -13,9 +19,8 @@
 
       // 把 Pixi 应用中创建出来的 canvas 添加到页面上
       document.body.appendChild(app.view);
-      app.renderer.backgroundColor = 0x061639;
       app.renderer.autoResize = true;
-      app.renderer.resize(512, 512);
+      app.renderer.resize(window.innerWidth, window.innerHeight);
     </script>
   </body>
 </html>
