@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>色彩</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas">如果不支持canvas会显示这段文字</canvas>
+    <script>
+      // 如果我们想要给图形上色，有两个重要的属性可以做到：fillStyle 和 strokeStyle。
+      //  fillStyle = color 设置图形的填充颜色。
+      //  strokeStyle = color 设置图形轮廓的颜色。
+      //  color 可以是表示 CSS 颜色值的字符串，渐变对象或者图案对象。我们迟些再回头探讨渐变和图案对象。
+      // 默认情况下，线条和填充颜色都是黑色（CSS 颜色值 #000000）。
+      const canvas = document.querySelector("#canvas");
+      const ctx = canvas.getContext("2d");
+      // fillStyle 示例
+
+      // for (var i = 0; i < 6; i++) {
+      //   for (var j = 0; j < 6; j++) {
+      //     ctx.fillStyle =
+      //       "rgb(" +
+      //       Math.floor(255 - 42.5 * i) +
+      //       "," +
+      //       Math.floor(255 - 42.5 * j) +
+      //       ",0)";
+      //     ctx.fillRect(j * 25, i * 25, 25, 25);
+      //   }
+      // }
+
+      // strokeStyle 示例
+      // for (var i = 0; i < 6; i++) {
+      //   for (var j = 0; j < 6; j++) {
+      //     ctx.strokeStyle =
+      //       "rgb(0," +
+      //       Math.floor(255 - 42.5 * i) +
+      //       "," +
+      //       Math.floor(255 - 42.5 * j) +
+      //       ")";
+      //     ctx.beginPath();
+      //     ctx.arc(12.5 + j * 25, 12.5 + i * 25, 10, 0, Math.PI * 2, true);
+      //     ctx.stroke();
+      //   }
+      // }
+
+      // globalAlpha 示例
+      // 在这个例子里，将用四色格作为背景，设置 globalAlpha 为 0.2 后，在上面画一系列半径递增的半透明圆。
+      // 最终结果是一个径向渐变效果。圆叠加得越更多，原先所画的圆的透明度会越低。
+      // 通过增加循环次数，画更多的圆，从中心到边缘部分，背景图会呈现逐渐消失的效果。
+      // 画背景
+      // ctx.fillStyle = "#FD0";
+      // ctx.fillRect(0, 0, 75, 75);
+      // ctx.fillStyle = "#6C0";
+      // ctx.fillRect(75, 0, 75, 75);
+      // ctx.fillStyle = "#09F";
+      // ctx.fillRect(0, 75, 75, 75);
+      // ctx.fillStyle = "#F30";
+      // ctx.fillRect(75, 75, 75, 75);
+      // ctx.fillStyle = "#FFF";
+
+      // // 设置透明度值
+      // ctx.globalAlpha = 0.2;
+
+      // // 画半透明圆
+      // for (var i = 0; i < 6; i++) {
+      //   ctx.beginPath();
+      //   ctx.arc(75, 75, 10 + 10 * i, 0, Math.PI * 2, true);
+      //   ctx.fill();
+      // }
+
+      // rgba() 示例 第二个例子和上面那个类似，不过不是画圆，而是画矩形。这里还可以看出，rgba() 可以分别设置轮廓和填充样式，因而具有更好的可操作性和使用灵活性。
+      // 画背景
+      ctx.fillStyle = "rgb(255,221,0)";
+      ctx.fillRect(0, 0, 150, 37.5);
+      ctx.fillStyle = "rgb(102,204,0)";
+      ctx.fillRect(0, 37.5, 150, 37.5);
+      ctx.fillStyle = "rgb(0,153,255)";
+      ctx.fillRect(0, 75, 150, 37.5);
+      ctx.fillStyle = "rgb(255,51,0)";
+      ctx.fillRect(0, 112.5, 150, 37.5);
+
+      // 画半透明矩形
+      for (var i = 0; i < 10; i++) {
+        ctx.fillStyle = "rgba(255,255,255," + (i + 1) / 10 + ")";
+        for (var j = 0; j < 4; j++) {
+          ctx.fillRect(5 + i * 14, 5 + j * 37.5, 14, 27.5);
+        }
+      }
+
+      // 线型 Line styles
+    </script>
+  </body>
+</html>

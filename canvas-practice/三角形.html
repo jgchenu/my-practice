@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>三角形</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas">如果不支持canvas会显示这段文字</canvas>
+    <script>
+      // https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
+      const canvas = document.querySelector("#canvas");
+      const ctx = canvas.getContext("2d");
+
+      // 填充三角形
+      ctx.beginPath();
+      ctx.moveTo(25, 25);
+      ctx.lineTo(105, 25);
+      ctx.lineTo(25, 105);
+      ctx.fill();
+
+      // 描边三角形
+      ctx.beginPath();
+      ctx.moveTo(125, 125);
+      ctx.lineTo(125, 45);
+      ctx.lineTo(45, 125);
+      ctx.closePath();
+      ctx.stroke();
+      // 你会注意到填充与描边三角形步骤有所不同。正如上面所提到的，因为路径使用填充（fill）时，路径自动闭合，使用描边（stroke）则不会闭合路径。
+      // 如果没有添加闭合路径closePath()到描述三角形函数中，则只绘制了两条线段，并不是一个完整的三角形。
+    </script>
+  </body>
+</html>

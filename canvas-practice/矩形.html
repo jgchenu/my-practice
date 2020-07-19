@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>矩形</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas">如果不支持canvas会显示这段文字</canvas>
+    <script>
+      // https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
+      const canvas = document.querySelector("#canvas");
+      const ctx = canvas.getContext("2d");
+
+      ctx.fillRect(25, 25, 100, 100); // fillRect(x, y, width, height) 绘制一个填充的矩形
+      ctx.clearRect(45, 45, 60, 60); // clearRect(x, y, width, height) 清除指定矩形区域，让清除部分完全透明。
+      ctx.strokeRect(50, 50, 50, 50); // strokeRect(x, y, width, height) 绘制一个矩形的边框
+      /**
+       * fillRect()函数绘制了一个边长为100px的黑色正方形。
+       * clearRect()函数从正方形的中心开始擦除了一个60*60px的正方形，
+       * 接着strokeRect()在清除区域内生成一个50*50的正方形边框。
+       */
+    </script>
+  </body>
+</html>

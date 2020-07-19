@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>圆弧</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas">如果不支持canvas会显示这段文字</canvas>
+    <script>
+      // https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
+      const canvas = document.querySelector("#canvas");
+      const ctx = canvas.getContext("2d");
+      /**
+       * 注意：arc()函数中表示角的单位是弧度，不是角度。角度与弧度的js表达式: 弧度=(Math.PI/180)*角度。
+       * arc(x, y, radius, startAngle, endAngle, anticlockwise)
+       * 画一个以（x,y）为圆心的以radius为半径的圆弧（圆），从startAngle开始到endAngle结束，按照anticlockwise给定的方向（默认为顺时针）来生成。
+       * radius为半径。startAngle以及endAngle参数用弧度定义了开始以及结束的弧度。这些都是以x轴为基准,弧度是以x轴顺时针方向开始计算.
+       * 参数anticlockwise为一个布尔值。为true时，是逆时针方向，否则顺时针方向。
+       **/
+      for (var i = 0; i < 4; i++) {
+        for (var j = 0; j < 3; j++) {
+          ctx.beginPath();
+          var x = 25 + j * 50; // x 坐标值
+          var y = 25 + i * 50; // y 坐标值
+          var radius = 20; // 圆弧半径
+          var startAngle = 0; // 开始点
+          var endAngle = Math.PI + (Math.PI * j) / 2; // 结束点
+          var anticlockwise = i % 2 == 0 ? false : true; // 顺时针或逆时针
+
+          ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+
+          if (i > 1) {
+            ctx.fill();
+          } else {
+            ctx.stroke();
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
