@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>线型 lineCap</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+      // lineCap 属性的例子
+      // 属性 lineCap 的值决定了线段端点显示的样子。它可以为下面的三种的其中之一：butt，round 和 square。默认是 butt。
+      function draw() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        var lineCap = ["butt", "round", "square"];
+
+        // 创建路径
+        ctx.strokeStyle = "#09f";
+        ctx.beginPath();
+        ctx.moveTo(10, 10);
+        ctx.lineTo(140, 10);
+        ctx.moveTo(10, 140);
+        ctx.lineTo(140, 140);
+        ctx.stroke();
+
+        // 画线条
+        ctx.strokeStyle = "black";
+        for (var i = 0; i < lineCap.length; i++) {
+          ctx.lineWidth = 15;
+          ctx.lineCap = lineCap[i];
+          ctx.beginPath();
+          ctx.moveTo(25 + i * 50, 10);
+          ctx.lineTo(25 + i * 50, 140);
+          ctx.stroke();
+        }
+      }
+      draw();
+    </script>
+  </body>
+</html>

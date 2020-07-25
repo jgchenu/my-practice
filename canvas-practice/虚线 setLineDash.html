@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>虚线 setLineDash</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      var ctx = document.getElementById("canvas").getContext("2d");
+      var offset = 0;
+      // 用 setLineDash 方法和 lineDashOffset 属性来制定虚线样式.
+      // setLineDash 方法接受一个数组，来指定线段与间隙的交替；
+      // lineDashOffset 属性设置起始偏移量. 正数为逆向偏移，负数为正向偏移
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.setLineDash([4, 2]);
+        ctx.lineDashOffset = -offset;
+        ctx.strokeRect(10, 10, 100, 100);
+      }
+
+      function march() {
+        offset++;
+        if (offset > 16) {
+          offset = 0;
+        }
+        draw();
+        setTimeout(march, 20);
+      }
+
+      march();
+    </script>
+  </body>
+</html>

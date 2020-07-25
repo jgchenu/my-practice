@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>线型 lineJoin</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      /**
+       * lineJoin 属性的例子
+       * lineJoin 的属性值决定了图形中两线段连接处所显示的样子。它可以是这三种之一：round, bevel 和 miter。默认是 miter。
+       * 这里我同样用三条折线来做例子，分别设置不同的 lineJoin 值。
+       * 最上面一条是 round 的效果，边角处被磨圆了，圆的半径等于线宽。
+       * 中间和最下面一条分别是 bevel 和 miter 的效果。
+       * 当值是 miter 的时候，线段会在连接处外侧延伸直至交于一点，延伸效果受到下面将要介绍的 miterLimit 属性的制约。
+       */
+
+      function draw() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        var lineJoin = ["round", "bevel", "miter"];
+        ctx.lineWidth = 10;
+        for (var i = 0; i < lineJoin.length; i++) {
+          ctx.lineJoin = lineJoin[i];
+          ctx.beginPath();
+          ctx.moveTo(-5, 5 + i * 40);
+          ctx.lineTo(35, 45 + i * 40);
+          ctx.lineTo(75, 5 + i * 40);
+          ctx.lineTo(115, 45 + i * 40);
+          ctx.lineTo(155, 5 + i * 40);
+          ctx.stroke();
+        }
+      }
+      draw();
+
+      // miterLimit 属性的演示例子
+      // 就如上一个例子所见的应用 miter 的效果，线段的外侧边缘会延伸交汇于一点上。线段直接夹角比较大的，交点不会太远，但当夹角减少时，交点距离会呈指数级增大。
+      // miterLimit 属性就是用来设定外延交点与连接点的最大距离，如果交点距离大于此值，连接效果会变成了 bevel。
+    </script>
+  </body>
+</html>
