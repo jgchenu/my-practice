@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>绘制文本</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      /**
+       *  绘制文本
+       * canvas 提供了两种方法来渲染文本:
+       * fillText(text, x, y [, maxWidth])
+       * 在指定的(x,y)位置填充指定的文本，绘制的最大宽度是可选的.
+       * strokeText(text, x, y [, maxWidth])
+       * 在指定的(x,y)位置绘制文本边框，绘制的最大宽度是可选的.
+       */
+      function draw() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        ctx.font = "48px serif";
+        ctx.fillText("Hello world", 10, 50);
+        ctx.font = "48px serif";
+        ctx.strokeText("Hello world", 100, 100);
+        const text = ctx.measureText("Hello world");
+        console.log(text, text.width);
+      }
+      draw();
+    </script>
+  </body>
+</html>

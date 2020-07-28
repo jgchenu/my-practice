@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rotate</title>
+  </head>
+  <body>
+    <canvas id="canvas"> </canvas>
+    <canvas id="canvas1" height="300"> </canvas>
+    <script>
+      function canvas1Test() {
+        const canvas = document.querySelector("#canvas1");
+        const ctx = canvas.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(90, 90, 15, 0, Math.PI * 2, true);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.rotate(Math.PI / 12);
+        ctx.arc(90, 90, 15, 0, Math.PI * 2, true);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.rotate(Math.PI / 12);
+        ctx.arc(90, 90, 15, 0, Math.PI * 2, true);
+        ctx.stroke();
+      }
+      canvas1Test();
+
+      function draw() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        ctx.translate(75, 75);
+
+        for (var i = 1; i < 6; i++) {
+          // Loop through rings (from inside to out)
+          ctx.save();
+          ctx.fillStyle = "rgb(" + 51 * i + "," + (255 - 51 * i) + ",255)";
+
+          for (var j = 0; j < i * 6; j++) {
+            // draw individual dots
+            ctx.rotate((Math.PI * 2) / (i * 6));
+            ctx.beginPath();
+            ctx.arc(0, i * 12.5, 5, 0, Math.PI * 2, true);
+            ctx.fill();
+          }
+
+          ctx.restore();
+        }
+      }
+      draw();
+    </script>
+  </body>
+</html>

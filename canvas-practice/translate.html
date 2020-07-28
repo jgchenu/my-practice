@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>translate</title>
+  </head>
+  <body>
+    <canvas id="canvas" height="1000" width="1000"></canvas>
+    <script>
+      const canvas = document.querySelector("#canvas");
+      const ctx = canvas.getContext("2d");
+      ctx.translate(100, 100); // 将坐标原点移动到(100，100)
+      ctx.beginPath();
+      ctx.arc(0, 0, 10, 0, Math.PI * 2, true);
+      ctx.stroke();
+      ctx.rotate(Math.PI / 4); // 旋转画布45度，会在原来translate的基础上进行rotate旋转，而不是0，0坐标旋转
+      ctx.translate(20, 20); // 会在rotate跟translate的基础上进行transate，在旋转了45度的画布，跟坐标原点为100，100，的基础上做坐标位移
+      ctx.beginPath();
+      ctx.arc(0, 0, 10, 0, Math.PI * 2, true);
+      ctx.stroke();
+    </script>
+  </body>
+</html>
