@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>小球滚动动画</title>
+    <style></style>
+  </head>
+  <body>
+    <canvas></canvas>
+    <script>
+      const canvas = document.querySelector("canvas");
+      canvas.width = document.documentElement.clientWidth;
+      canvas.height = document.documentElement.clientHeight;
+
+      const ctx = canvas.getContext("2d");
+      const ball = {
+        x: 100,
+        y: 100,
+        radius: 25,
+        vx: 5,
+        vy: 2,
+        color: "blue",
+        clear() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        },
+        draw() {
+          this.clear();
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.closePath();
+          ctx.fillStyle = this.color;
+          ctx.fill();
+        },
+      };
+      let raf;
+
+      function draw() {
+        ball.draw();
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+        if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+          ball.vy = -ball.vy;
+        }
+        if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+          ball.vx = -ball.vx;
+        }
+        raf = window.requestAnimationFrame(draw);
+      }
+
+      canvas.addEventListener("mouseover", () => {
+        raf = window.requestAnimationFrame(draw);
+      });
+
+      canvas.addEventListener("mouseout", () => {
+        window.cancelAnimationFrame(raf);
+      });
+      ball.draw();
+    </script>
+  </body>
+</html>
