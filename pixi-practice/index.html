@@ -4,8 +4,125 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pixijs</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #canvas-container {
+        height: 100%;
+        margin-left: 100px;
+      }
+    </style>
   </head>
   <body>
-    <script src="index.js"></script>
+    <div id="canvas-container"></div>
+    <script src="./pixi/pixi.min.js"></script>
+    <script>
+      const Application = PIXI.Application;
+      const Container = PIXI.Container;
+      const Graphics = PIXI.Graphics;
+      const Point = PIXI.Point;
+      // https://blog.csdn.net/o83290102o5/article/details/77987058
+      // PIXI.Matrix 保存了两个矩阵对象，分别为local和world，这个非常好理解，local就是相对于父级的属性，world就是相对于root根容器的属性。
+      class CustomContainer {
+        constructor() {
+          this.el = new Container();
+          const circleEL = new Graphics();
+          circleEL.beginFill(0x9966ff);
+          circleEL.drawRect(0, 0, 100, 100);
+          circleEL.endFill();
+          this.el.addChild(circleEL);
+          this.el.interactive = true;
+          circleEL.interactive = true;
+          circleEL.position.x = 100;
+          circleEL.position.y = 100;
+          circleEL.scale.x = 0.2;
+          circleEL.scale.y = 0.2;
+
+          circleEL.on("pointerover", (ev) => {
+            console.log("event target", ev.target);
+            // 获取相对于canvs的坐标系的全局坐标
+            console.log("global:", ev.data.global);
+            // 用相对于全局坐标系（也就是canvas）的坐标 获取 相对于当前坐标系的坐标
+            console.log(
+              "local:",
+              ev.target.transform.worldTransform.applyInverse(ev.data.global)
+            );
+            // 获取相对于视口的坐标
+            console.log(
+              "clientXY:",
+              ev.data.originalEvent.clientX,
+              ev.data.originalEvent.clientY
+            );
+            // 用相对于当前坐标系的坐标 换 相对于全局坐标系的 坐标
+            console.log(
+              "worldTransform apply:",
+              ev.target.transform.worldTransform.apply(new Point(2, 2))
+            );
+            // 用相对于全局坐标系（也就是canvas）的坐标 获取 相对于当前坐标系的坐标
+            console.log(
+              "worldTransform inverse apply:",
+              ev.target.transform.worldTransform.applyInverse(new Point(0, 0))
+            );
+
+            // 用当前坐标系的一个坐标 换 相对于父级坐标系的一个坐标，
+            // 比如在当前坐标系(1，1),换算到父坐标系，由于当前坐标系设置了缩放0.5，并且偏移了(100，100),
+            // 换算到父坐标系的坐标,就是这个坐标系在父级坐标系下的偏移 + (当前坐标系的坐标 乘 缩放比) : apply(1,1) = (100+ 1*0.5,100+1*0.5) = (100.5,100.5)
+            console.log(
+              "localTransform: apply",
+              ev.target.transform.localTransform.apply(new Point(1, 1))
+            );
+
+            //  用相对于父级坐标系的一个坐标 换 当前坐标系的一个坐标，
+            // 比如在父坐标系（1，1）的位置, 而当前的坐标系偏移父坐标系 (100,100), 那么这个位置在当前坐标系的坐标是 (在父坐标系（1，1）的位置 - 这个坐标系在父级坐标系下的偏移) / 缩放比
+            console.log(
+              "localTransform: inverse apply",
+              ev.target.transform.localTransform.applyInverse(new Point(1, 1))
+            );
+
+            // 换坐标的方式，可以理解为，在某个坐标系的单位，这个点这么大，但是到另外一个坐标系，以这个坐标系的单位，这个点应该多大。
+          });
+        }
+
+        setScale(number) {
+          this.el.scale.x = number;
+          this.el.scale.y = number;
+        }
+
+        setPosition(point) {
+          this.el.position.x = point.x;
+          this.el.position.y = point.y;
+        }
+      }
+      const el = document.querySelector("#canvas-container");
+      const { height, width } = el.getBoundingClientRect();
+      const app = new Application({
+        width: width,
+        height: height,
+        antialiasing: true,
+        transparent: true,
+        forceCanvas: true,
+        resolution: window.devicePixelRatio,
+      });
+      el.appendChild(app.view);
+      app.view.in;
+      const stage = app.stage;
+      stage.scale.x = 0.5;
+      stage.scale.y = 0.5;
+
+      const custom = new CustomContainer();
+      custom.setScale(0.5);
+      custom.setPosition(new Point(100, 100));
+      stage.addChild(custom.el);
+    </script>
   </body>
 </html>

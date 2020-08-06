@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>缩放和反锯齿</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <canvas id="zoom"></canvas>
+    <script>
+      // drawImage API https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/drawImage
+      // 我们得到鼠标的位置并裁剪出距左和上5像素，距右和下5像素的图片。
+      // 然后我们将这幅图复制到另一个画布然后将图片调整到我们想要的大小。在缩放画布里，我们将10×10像素的对原画布的裁剪调整为 200×200 。
+      // zoomctx.drawImage(canvas, Math.abs(x - 5), Math.abs(y - 5),10, 10, 0, 0, 200, 200);
+      const img = new Image();
+      img.onload = function () {
+        draw(this);
+      };
+      img.src = "./animals.png";
+      function draw(img) {
+        const canvas = document.querySelector("#canvas");
+        const zoomCanvas = document.querySelector("#zoom");
+        const ctx = canvas.getContext("2d");
+        const zoomCtx = zoomCanvas.getContext("2d");
+
+        canvas.addEventListener("mousemove", function (event) {
+          const x = event.offsetX;
+          const y = event.offsetY;
+          zoomCtx.drawImage(
+            canvas,
+            Math.abs(x - 5),
+            Math.abs(y - 5),
+            10,
+            10,
+            0,
+            0,
+            20,
+            20
+          );
+        });
+      }
+    </script>
+  </body>
+</html>
