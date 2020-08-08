@@ -15,16 +15,25 @@
         width: 100%;
         margin: 0;
         padding: 0;
+        background-color: red;
       }
 
       #canvas-container {
         height: 100%;
+        background-color: white;
         margin-left: 100px;
+      }
+
+      #text {
+        position: absolute;
+        top: 400px;
+        left: 400px;
       }
     </style>
   </head>
   <body>
     <div id="canvas-container"></div>
+    <div id="text"></div>
     <script src="./pixi/pixi.min.js"></script>
     <script>
       const Application = PIXI.Application;
@@ -41,14 +50,21 @@
           circleEL.drawRect(0, 0, 100, 100);
           circleEL.endFill();
           this.el.addChild(circleEL);
-          this.el.interactive = true;
+          // this.el.interactive = true;
           circleEL.interactive = true;
           circleEL.position.x = 100;
           circleEL.position.y = 100;
-          circleEL.scale.x = 0.2;
-          circleEL.scale.y = 0.2;
+          circleEL.scale.x = 0.5;
+          circleEL.scale.y = 0.5;
 
           circleEL.on("pointerover", (ev) => {
+            console.log(
+              circleEL.transform.worldTransform.applyInverse(new Point(0, 0))
+            );
+            document.querySelector(
+              "#text"
+            ).innerHTML = `${ev.data.global.x},${ev.data.global.y}`;
+            console.log("event:", ev);
             console.log("event target", ev.target);
             // 获取相对于canvs的坐标系的全局坐标
             console.log("global:", ev.data.global);
@@ -114,7 +130,6 @@
         resolution: window.devicePixelRatio,
       });
       el.appendChild(app.view);
-      app.view.in;
       const stage = app.stage;
       stage.scale.x = 0.5;
       stage.scale.y = 0.5;
