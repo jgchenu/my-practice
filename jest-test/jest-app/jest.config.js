@@ -6,7 +6,6 @@ module.exports = {
   testMatch: [
     "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
     "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}",
-    "!<rootDir>/scripts/test.js",
   ],
   testEnvironment: "jest-environment-jsdom-fourteen",
   transform: {
