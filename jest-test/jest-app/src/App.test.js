@@ -10,5 +10,5 @@ import App from "./App";
 
 it("render without crashing", () => {
   const wrapper = shallow(<App />);
-  console.log(wrapper.find(".App"));
+  expect(wrapper.find(".App").length).toBe(1);
 });
