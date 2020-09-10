@@ -25,6 +25,7 @@ test("Header 渲染的input change 事件会改变值", () => {
   inputElem.simulate("change", {
     target: { value: userValue },
   });
+  // 触发更新后，要重新拿新的额inputElement,因为之前是旧的缓存，value还是旧值
   expect(wrapper.find('[data-test="input"]').props().value).toBe(userValue);
 });
 
@@ -44,7 +45,7 @@ test("Header 渲染的input 按下回车 有内容 回调事件会被调用", ()
   wrapper.find('[data-test="input"]').simulate("change", {
     target: { value: "jgchen" },
   });
-  // 坑爹呀，要重新拿input去触发,里面才能拿到最新的value
+  // 坑爹呀，要重新拿input去触发,里面才能拿到最新的value，这个时候才 value&&addUndoItem(v),value有值，才会触发
   wrapper.find('[data-test="input"]').simulate("keyUp", {
     keyCode: 13,
   });
