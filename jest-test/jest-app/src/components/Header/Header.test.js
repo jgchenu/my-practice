@@ -2,6 +2,11 @@ import React from "react";
 import Header from "./Header";
 import { shallow } from "enzyme";
 
+test("Header 正常渲染", () => {
+  const wrapper = shallow(<Header />);
+  expect(wrapper).toMatchSnapshot();
+});
+
 test("Header 组件应该渲染一个input", () => {
   const wrapper = shallow(<Header />);
   expect(wrapper.find('[data-test="input"]')).toExist();

@@ -6,6 +6,6 @@ exports[`render without crashing 1`] = `
   data-test="container"
   title="jgchen"
 >
-  <Header />
+  <TodoList />
 </div>
 `;

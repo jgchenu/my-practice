@@ -1,0 +1,16 @@
+.header-wrap {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 100px;
+  background-color: lightblue;
+}
+
+.header-wrap > input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  height: 30px;
+  font-size: 28px;
+}

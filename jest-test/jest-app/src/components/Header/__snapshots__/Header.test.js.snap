@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header 正常渲染 1`] = `
+<header
+  className="header-wrap"
+>
+  <input
+    data-test="input"
+    onChange={[Function]}
+    onKeyUp={[Function]}
+    placeholder="输入回车"
+    type="text"
+    value=""
+  />
+</header>
+`;
