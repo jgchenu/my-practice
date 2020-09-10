@@ -8,7 +8,7 @@ export default function TodoList() {
     <div>
       <Header
         addUndoItem={(v) => {
-          setList((pre) => [...pre, { id: idRef.current++, val: v }]);
+          setList([...list, { id: idRef.current++, val: v }]);
         }}
       />
       <ul>

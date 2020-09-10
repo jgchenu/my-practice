@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import { shallow } from "enzyme";
-
+import { act } from "jest-enzyme";
 test("Header 正常渲染", () => {
   const wrapper = shallow(<Header />);
   expect(wrapper).toMatchSnapshot();
@@ -29,8 +29,8 @@ test("Header 渲染的input change 事件会改变值", () => {
 });
 
 test("Header 渲染的input 按下回车 没内容 回调事件不会被调用", () => {
-  const wrapper = shallow(<Header />);
   const fn = jest.fn();
+  const wrapper = shallow(<Header addUndoItem={fn} />);
   const inputElem = wrapper.find('[data-test="input"]');
   inputElem.simulate("keyUp", {
     keyCode: 13,
@@ -39,14 +39,14 @@ test("Header 渲染的input 按下回车 没内容 回调事件不会被调用",
 });
 
 test("Header 渲染的input 按下回车 有内容 回调事件会被调用", () => {
-  const wrapper = shallow(<Header />);
   const fn = jest.fn();
-  const inputElem = wrapper.find('[data-test="input"]');
-  inputElem.simulate("change", {
+  const wrapper = shallow(<Header addUndoItem={fn} />);
+  wrapper.find('[data-test="input"]').simulate("change", {
     target: { value: "jgchen" },
   });
-  inputElem.simulate("keyDown", {
+  // 坑爹呀，要重新拿input去触发,里面才能拿到最新的value
+  wrapper.find('[data-test="input"]').simulate("keyUp", {
     keyCode: 13,
   });
-  expect(fn).not.toHaveBeenCalledWith("jgchen");
+  expect(fn).toHaveBeenCalledWith("jgchen");
 });

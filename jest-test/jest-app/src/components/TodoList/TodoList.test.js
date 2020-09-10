@@ -14,9 +14,8 @@ test("TodoList 组件初始化渲染应该为空", () => {
 
 test("TodoList 组件初始化 输入回车后有新的渲染数据", () => {
   const wrapper = shallow(<TodoList />);
-  const header = wrapper.find("Header");
-  header.props().addUndoItem("jgchen1");
-  header.props().addUndoItem("jgchen2");
-  header.props().addUndoItem("jgchen3");
+  wrapper.find("Header").props().addUndoItem("jgchen1");
+  wrapper.find("Header").props().addUndoItem("jgchen2");
+  wrapper.find("Header").props().addUndoItem("jgchen3");
   expect(wrapper.find("li").length).toBe(3);
 });
