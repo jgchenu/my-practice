@@ -15,13 +15,17 @@
     </div>
   </body>
   <script>
+    // 高级程序设计 333页 range
+    // 完整介绍了setStartBefore setStartAfter setEndAfter  setEndBefore selectNode selectNodeContents setStart setEnd
+    // range.cloneContents() range.deleteContents() range.insertNode() range.extractContents range.surroundContents range.collapse() range.collapsed
     const div = document.querySelector("div");
     const spans = div.querySelectorAll("span");
-    const span1 = spans[0];
-    const span2 = spans[1];
+    // const span1 = spans[0];
+    // const span2 = spans[1];
     const range = document.createRange();
     range.setStartAfter(div.lastChild);
     range.setEndAfter(div.lastChild);
+
     // range.deleteContents();
     // const el = document.createElement("div");
     // el.innerHTML = "<span>test</span>";
@@ -31,6 +35,7 @@
     // range.selectNodeContents(span1);
     console.dir(range);
     console.log(range.cloneContents());
+    document.getSelection().removeAllRanges();
     document.getSelection().addRange(range);
   </script>
 </html>
