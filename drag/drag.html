@@ -27,9 +27,9 @@
       const dragElement = document.querySelector("#drag");
       const image = new Image(100, 100);
       image.src =
-        "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png";
+        "https://s3.pstatp.com/toutiao/xitu_juejin_web/img/logo.a7995ad.svg";
       dragElement.addEventListener("dragstart", (e) => {
-        e.dataTransfer.setDragImage(image, 10, 10);
+        e.dataTransfer.setDragImage(image, 0, 0);
         e.dataTransfer.setData("text", "I'm jgchen");
       });
       const dropElement = document.querySelector("#drop");
@@ -48,7 +48,7 @@
         e.preventDefault();
         const text = e.dataTransfer.getData("text");
         console.log(text, "ssss");
-        dropElement.textContent = text;
+        dropElement.appendChild(image);
       });
     </script>
   </body>
