@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>drag</title>
+    <style>
+      div {
+        height: 100px;
+        width: 100px;
+        background-color: lightblue;
+        margin: 100px;
+      }
+
+      #drop {
+        background-color: lightcoral;
+      }
+      .active {
+        box-shadow: 2px 2px 10px 10px #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="drag" draggable="true"></div>
+    <div id="drop"></div>
+    <script>
+      const dragElement = document.querySelector("#drag");
+      const image = new Image(100, 100);
+      image.src =
+        "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png";
+      dragElement.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setDragImage(image, 10, 10);
+        e.dataTransfer.setData("text", "I'm jgchen");
+      });
+      const dropElement = document.querySelector("#drop");
+      dropElement.addEventListener("dragenter", (e) => {
+        dropElement.classList.add("active");
+        e.preventDefault();
+      });
+      dropElement.addEventListener("dragover", (e) => {
+        e.preventDefault();
+      });
+      dropElement.addEventListener("dragleave", () => {
+        dropElement.classList.remove("active");
+      });
+      dropElement.addEventListener("drop", (e) => {
+        dropElement.classList.remove("active");
+        e.preventDefault();
+        const text = e.dataTransfer.getData("text");
+        console.log(text, "ssss");
+        dropElement.textContent = text;
+      });
+    </script>
+  </body>
+</html>
