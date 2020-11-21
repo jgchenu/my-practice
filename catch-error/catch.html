@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>catch</title>
+  </head>
+  <body>
+    <script>
+      window.addEventListener("error", (e) => {
+        console.log("[error event]:", e);
+        console.log("[event message]:", e.message);
+        console.log("[message of event error]: ", e.error.message);
+        console.log("[stack of event error]: ", e.error.stack);
+        // e.preventDefault(); 阻止默认报错行为
+        // return false;
+      });
+      window.addEventListener("unhandledrejection", (e) => {
+        console.log("[unhandledrejection promise event]:", e);
+        console.log("[unhandledrejection promise event reason]:", e.reason);
+        console.log(
+          "[unhandledrejection promise event reason message]:",
+          e.reason.message
+        );
+      });
+      function mockError() {
+        throw Error("a not defined");
+      }
+
+      async function mockPromiseError() {
+        await Promise.resolve().then(() => {
+          throw Error("b not defined");
+        });
+      }
+      try {
+        mockError();
+      } catch (error) {
+        console.log(error.message);
+      }
+
+      // await 只会等待当前调用的函数的Promise是否完成，从而导致异步promise reject是否会被catch
+      (async () => {
+        try {
+          await mockPromiseError();
+        } catch (error) {
+          console.log(error.message);
+        }
+      })();
+
+      mockPromiseError();
+      mockError();
+    </script>
+  </body>
+</html>
