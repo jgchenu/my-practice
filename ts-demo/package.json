@@ -1,0 +1,15 @@
+{
+  "name": "ts-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "scripts": {
+    "dev": "nodemon --watch .//src -e ts --exec ts-node ./src/index.ts",
+    "start": "parcel ./index.html"
+  }
+}
