@@ -1,3 +1,11 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"]
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "modules": false // 配置了这个，babel就不会像默认那样转变成 require 形式。
+      }
+    ],
+    "@babel/preset-react"
+  ]
 }
