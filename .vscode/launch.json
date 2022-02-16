@@ -1,6 +1,13 @@
 {
   "configurations": [
     {
+      "name": "Attach node --inspect-brk",
+      "port": 9229,
+      "request": "attach",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    },
+    {
       "name": "插入函数调用参数-version1",
       "program": "${workspaceFolder}/babel-plugin-exercize/exercize-parameters-insert/src/version1.js",
       "request": "launch",

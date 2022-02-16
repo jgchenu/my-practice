@@ -6,24 +6,24 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: false,
+      nodeIntegration: true,
+      contextIsolation: false,
+      devTools: true,
     },
   });
-
   win.loadFile("index.html");
-  handleIPC();
-  // win.webContents.openDevTools();
 }
 
 function handleIPC() {
-  ipcMain.handle("time-work-notification", async (action) => {
-    const notification = new Notification();
-    notification.on("action", () => {});
-    notification.on("close", () => {});
+  ipcMain.on("time-work-notification", async (event, ...args) => {
+    console.log("arg", args);
   });
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  handleIPC();
+  createWindow();
+});
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {

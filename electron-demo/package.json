@@ -1,12 +1,36 @@
 {
   "name": "electron-demo",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "license": "MIT",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "devDependencies": {
-    "electron": "^11.0.3"
+    "electron": "^17.0.1",
+    "electron-builder": "^22.14.13"
+  },
+  "build": {
+    "appId": "com.xxx.app",
+    "productName": "jgchen app",
+    "copyright": "jgchen",
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "sun.icns"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/v"
+    }
   }
 }
