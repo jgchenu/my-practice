@@ -1,0 +1,5 @@
+[defaults]
+project = 'sentry-demo'
+org = 'jgchenu'
+[auth]
+token = '3fd66ca54c9247ce9f0d928503d42d2a3e9d567c39da43c3a7b6e959c55ec08c'
