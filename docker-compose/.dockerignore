@@ -1,0 +1,10 @@
+.DS_Store
+.idea
+.git
+.gitignore
+.env
+.dockerignore
+Dockerfile
+docker-compose.yaml
+nginx.conf
+var
