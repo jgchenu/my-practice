@@ -1,0 +1,33 @@
+.editor {
+  outline: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+
+  img {
+    max-width: 300px;
+    max-height: 300px;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 2px solid transparent;
+
+    &.selected {
+      border-color: lightblue;
+    }
+  }
+}
+
+.nav {
+  .image {
+    position: relative;
+
+    input {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+    }
+  }
+}
