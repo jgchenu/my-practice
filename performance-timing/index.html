@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>performance-timing</title>
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+  </head>
+  <body>
+    <div id="root">
+      <div class="red">red</div>
+      <div class="orange">orange</div>
+      <div class="yellow">yellow</div>
+      <div class="green">green</div>
+      <img src="https://avatars.githubusercontent.com/u/26036163?v=4" alt="" />
+    </div>
+    <script src="./longTime.js" defer></script>
+    <script>
+      // 测试长时间DomContentLoaded 耗时
+      window.addEventListener("DOMContentLoaded", () => {
+        var startTime = Date.now();
+        while (Date.now() - startTime < 200) {
+          // console.log(11);
+        }
+      });
+      // 测试长时间load 耗时
+      window.addEventListener("load", () => {
+        var startTime = Date.now();
+        while (Date.now() - startTime < 100) {
+          // console.log(11);
+        }
+      });
+
+      window.addEventListener("load", () => {
+        const root = document.querySelector("#root");
+        root.innerHTML = `
+        <div class="red">red</div>
+      <div class="orange">orange</div>
+      <div class="yellow">yellow</div>
+      <div class="green">green</div>
+      <img src="https://avatars.githubusercontent.com/u/26036163?v=4" alt="" />
+        `;
+      });
+      // 统计耗时
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          const script = document.createElement("script");
+          script.src = "./index.js";
+          document.body.append(script);
+        });
+      });
+    </script>
+  </body>
+</html>

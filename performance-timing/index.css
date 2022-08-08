@@ -1,0 +1,19 @@
+html,body {
+  height: 100%;
+}
+
+.red {
+  color: lightcoral;
+}
+
+.orange {
+  color: lightpink;
+}
+
+.yellow {
+  color: lightsalmon;
+}
+
+.green {
+  color: lightgreen;
+}
