@@ -1,0 +1,13 @@
+{
+  "name": "qiankun-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "cd main && yarn build && cd ../react-app && yarn build:app",
+    "start": "cd dist && live-server --port=8082 --entry-file=index.html"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
