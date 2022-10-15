@@ -83,16 +83,3 @@ type DeepReadonly<Obj extends object> = {
 };
 
 type DeepReadonlyResult = DeepReadonly<{ a: { b: 1 } }>;
-
-type Union = "a" | "b" | "c";
-
-type UppercaseA<Item extends string> = Item extends "a"
-  ? Uppercase<Item>
-  : Item;
-
-type UppercaseAResult = UppercaseA<Union>;
-
-type isUnion<A, B = A> = A extends A ? ([B] extends [A] ? false : true) : never;
-
-type isUnionResult = isUnion<"a" | "b">;
-type isUnionResult2 = isUnion<"a">;

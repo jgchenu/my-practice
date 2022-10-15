@@ -3,6 +3,7 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const baseConfig = require('./webpack.config');
 const ROOT_PATH = path.resolve(__dirname, '.');
+const __DEV__ = process.env.NODE_ENV === 'development';
 
 const config = merge(baseConfig, {
   output: {
@@ -10,7 +11,7 @@ const config = merge(baseConfig, {
     libraryTarget: 'umd',
     chunkLoadingGlobal: `webpackJsonp_${name}`,
     globalObject: 'window',
-    publicPath: `/${name}-entry`,
+    publicPath: __DEV__ ? '/' : `/${name}-entry`,
     path: path.resolve(ROOT_PATH, `../dist/${name}-entry`),
   },
   devServer: {
