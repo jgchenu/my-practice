@@ -7,9 +7,9 @@
     "dev:main": "cd main && yarn dev && cd ../react-app && yarn dev:app",
     "dev:app": "cd react-app && yarn dev:app",
     "build": "cd main && yarn build && cd ../react-app && yarn build:app",
-    "start": "cd dist && live-server --port=8082 --entry-file=index.html"
+    "start": "cd dist && http-server --port=8082 --proxy http://localhost:8082?"
   },
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "http-server": "^14.1.1"
   }
 }

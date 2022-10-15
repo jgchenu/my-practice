@@ -1,0 +1,12 @@
+{
+  "name": "web-components",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "http-server --port=8083 --proxy http://localhost:8083?"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
