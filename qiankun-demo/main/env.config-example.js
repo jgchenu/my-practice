@@ -1,3 +1,3 @@
 module.exports = {
-  reactAppEntry: '',
+  reactAppEntry: 'http://localhost:8081/',
 };
