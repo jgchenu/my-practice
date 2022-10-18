@@ -21,7 +21,7 @@ function Demo() {
 
   return (
     <div>
-      <h1>demo</h1>
+      <h1>One</h1>
       <div className={styles['blue-background']}>
         <p className={styles.red}>red1</p>
         <p className={styles.green}>green2</p>

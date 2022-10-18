@@ -55,3 +55,64 @@ type GetRequired<Obj extends Record<string, any>> = {
 };
 
 type GetRequiredResult = GetRequired<{ name: string; age?: number }>;
+
+type RemoveIndexSignature<Obj extends Record<string, any>> = {
+  [Key in keyof Obj as Key extends `${infer Str}` ? Str : never]: Obj[Key];
+};
+
+type RemoveIndexSignatureResult = RemoveIndexSignature<{
+  [key: string]: string | number;
+  a: 1;
+}>;
+
+class Dong {
+  public name: string;
+  protected age: number;
+  private hobbies: string[];
+
+  constructor() {
+    this.name = "dong";
+    this.age = 20;
+    this.hobbies = ["sleep", "eat"];
+  }
+}
+
+type ClassPublicProps<Obj extends Record<string, any>> = {
+  [Key in keyof Obj]: Obj[Key];
+};
+
+type ClassPublicPropsResult = ClassPublicProps<Dong>;
+
+type ParseParam<Str extends string> = Str extends `${infer Key}=${infer Value}`
+  ? { [K in Key]: Value }
+  : {};
+
+type ParseQueryFromString<Str extends string> =
+  Str extends `${infer Param}&${infer Rest}`
+    ? MergeObj<ParseParam<Param>, ParseQueryFromString<Rest>>
+    : ParseParam<Str>;
+
+type MergeValue<One, Other> = One extends Other
+  ? One
+  : One extends unknown[]
+  ? Other extends unknown[]
+    ? [...One, ...Other]
+    : [...One, Other]
+  : Other extends unknown[]
+  ? [One, ...Other]
+  : [One, Other];
+
+type MergeObj<
+  Obj1 extends Record<string, any>,
+  Obj2 extends Record<string, any>
+> = {
+  [Key in keyof Obj1 | keyof Obj2]: Key extends keyof Obj1
+    ? Key extends keyof Obj2
+      ? MergeValue<Obj1[Key], Obj2[Key]>
+      : Obj1[Key]
+    : Key extends keyof Obj2
+    ? Obj2[Key]
+    : never;
+};
+
+type ParseQueryFromStringResult = ParseQueryFromString<"a=1&b=2&a=2&b=3&a=3">;

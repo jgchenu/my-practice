@@ -6,17 +6,21 @@ import App from './App';
 import 'normalize.css';
 import './style.less';
 
-type AppProps = {
+type MicroAppProps = {
   container?: HTMLElement;
   basename?: string;
+  dispatchEvent?: (event: string, data?: any) => void;
+  onGlobalStateChange?: (...args: any[]) => void;
+  setGlobalState?: (...args: any[]) => void;
 };
 
 function getSubRootContainer(container?: HTMLElement) {
   return container ? container.querySelector('#react-app-root') : document.querySelector('#react-app-root');
 }
 
-function render(props: AppProps) {
-  console.log('props', props);
+function render(props: MicroAppProps) {
+  // 子 -> 主应用通信
+  props.dispatchEvent('name', { name: 'jgchen' });
   ReactDOM.render(<App basename={props.basename} />, getSubRootContainer(props.container));
 }
 
@@ -35,21 +39,31 @@ export async function bootstrap() {
 /**
  * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
  */
-export async function mount(props: AppProps) {
+export async function mount(props: MicroAppProps) {
   console.log('props from main framework', props);
+  props.onGlobalStateChange((state: any, prev: any) => {
+    console.log('react app state change:', state, prev);
+  });
+  props.setGlobalState({
+    user: { name: 'jgchen' },
+  });
+  // 监听 主应用消息
+  window.addEventListener('app', (e: CustomEvent<any>) => {
+    console.log('from main to app', e.detail);
+  });
   render(props);
 }
 
 /**
  * 应用每次 切出/卸载 会调用的方法，通常在这里我们会卸载微应用的应用实例
  */
-export async function unmount(props: AppProps) {
+export async function unmount(props: MicroAppProps) {
   ReactDOM.unmountComponentAtNode(getSubRootContainer(props.container));
 }
 
 /**
  * 可选生命周期钩子，仅使用 loadMicroApp 方式加载微应用时生效
  */
-export async function update(props: AppProps) {
+export async function update(props: MicroAppProps) {
   console.log('update props', props);
 }

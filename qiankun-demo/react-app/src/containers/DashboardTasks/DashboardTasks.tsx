@@ -1,7 +1,7 @@
 import React from 'react';
 
 function DashboardTasks() {
-  return <section>DashboardTasks</section>;
+  return <section>Four</section>;
 }
 
 export default DashboardTasks;

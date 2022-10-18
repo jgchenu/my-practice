@@ -15,15 +15,16 @@
 
     .aside {
       display: flex;
-      // width: @asideWidth;
+      flex-shrink: 0;
       height: 100%;
       flex-direction: column;
       align-items: center;
       padding: 10px;
       border-right: 1px solid #ccc;
 
-      a {
-        padding: 10px;
+      li {
+        cursor: pointer;
+        padding: 4px;
         color: #000;
         text-decoration: none;
 

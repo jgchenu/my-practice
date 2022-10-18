@@ -1,7 +1,7 @@
 import React from 'react';
 
 function DashboardMessages() {
-  return <section>DashboardMessages</section>;
+  return <section>Three</section>;
 }
 
 export default DashboardMessages;

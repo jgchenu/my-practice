@@ -9,7 +9,6 @@ type AppProps = {
   basename?: string;
 };
 function App(props: AppProps) {
-  console.log('props', props);
   return (
     <Provider store={store}>
       <BrowserRouter basename={props.basename}>

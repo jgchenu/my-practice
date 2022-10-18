@@ -14,15 +14,15 @@ const routes = [
     children: [
       { index: true, element: 'not matched' },
       {
-        path: 'demo',
+        path: 'one',
         element: <Demo />,
       },
-      { path: 'redux-demo', element: <ReduxDemo /> },
+      { path: 'two', element: <ReduxDemo /> },
       {
-        path: 'messages',
+        path: 'three',
         element: <DashboardMessages />,
       },
-      { path: 'tasks', element: <DashboardTasks /> },
+      { path: 'four', element: <DashboardTasks /> },
     ],
   },
 ];

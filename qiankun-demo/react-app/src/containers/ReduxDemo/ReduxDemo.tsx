@@ -12,7 +12,7 @@ function ReduxDemo() {
 
   return (
     <div>
-      <h1>redux demo</h1>
+      <h1>Two</h1>
       <div className={styles['blue-background']}>
         <p className={styles.red}>red1</p>
         <p className={styles.green}>green2</p>
