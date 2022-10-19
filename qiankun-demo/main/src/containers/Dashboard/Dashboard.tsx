@@ -4,16 +4,16 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import styles from './style.less';
 
 const defaultLinks: LinkItem[] = [
-  { to: '/messages', text: 'Messages' },
-  { to: '/tasks', text: 'Tasks' },
-  { to: '/demo', text: 'Demo' },
-  { to: '/redux-demo', text: 'Tasks' },
-  { to: '/react-app', text: 'Sub React App' },
+  { to: '/messages', label: 'Messages' },
+  { to: '/tasks', label: 'Tasks' },
+  { to: '/demo', label: 'Demo' },
+  { to: '/redux-demo', label: 'Tasks' },
+  { to: '/react-app', label: 'Sub React App' },
 ];
 
 type LinkItem = {
   to: string;
-  text: string;
+  label: string;
   children?: LinkItem[];
 };
 
@@ -53,7 +53,7 @@ function Dashboard() {
                     navigate(item.to);
                   }}
                 >
-                  {item.text}
+                  {item.label}
                 </span>
                 <ul>
                   {item.children &&
@@ -64,7 +64,7 @@ function Dashboard() {
                           navigate(subItem.to);
                         }}
                       >
-                        {subItem.text}
+                        {subItem.label}
                       </li>
                     ))}
                 </ul>
