@@ -1,12 +1,12 @@
 {
   "sidebar": [
     {
-      "text": "react app one",
+      "label": "react app one",
       "key": "/react-app/one",
       "to": "/react-app/one"
     },
     {
-      "text": "react app two",
+      "label": "react app two",
       "key": "/react-app/two",
       "to": "/react-app/two"
     }
