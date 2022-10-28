@@ -83,3 +83,11 @@ type DeepReadonly<Obj extends object> = {
 };
 
 type DeepReadonlyResult = DeepReadonly<{ a: { b: 1 } }>;
+
+const fun = (a:number,b:string,c:boolean) => {};
+
+type CurryFun<Params,Result> =  Params extends [infer Arg, ...infer Rest]  ? (arg: Arg) => CurryFun<Rest,Result> : void;
+
+declare function curry<Func>(fn: Func): Func extends (...args: infer Params) => infer Result ? CurryFun<Params,Result> : void;
+
+const curryFun  = curry(fun)
