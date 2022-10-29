@@ -10,7 +10,7 @@ import { getMicroApps } from './helpers/micro-app';
 ReactDOM.render(<App />, document.getElementById('root'), async () => {
   const apps = await getMicroApps();
   registerMicroApps(apps);
-  start();
+  start({ sandbox: { experimentalStyleIsolation: true } });
   runAfterFirstMounted(() => {
     // 主 -> 子 通信
     window.dispatchEvent(new CustomEvent('app', { detail: { a: 1 } }));

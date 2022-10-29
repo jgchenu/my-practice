@@ -9,6 +9,11 @@
       "label": "react app two",
       "key": "/react-app/two",
       "to": "/react-app/two"
+    },
+    {
+      "label": "react app three",
+      "key": "/react-app/three",
+      "to": "/react-app/three"
     }
   ]
 }
