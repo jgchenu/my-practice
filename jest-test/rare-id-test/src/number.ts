@@ -5,7 +5,7 @@ export const getKNumberReg = (len: number) => {
   return `${Math.pow(10, len - 3)}K`;
 };
 
-export const getKNumberAns = (len: number) => {
+export const getKNumberRegAns = (len: number) => {
   if (len <= 3) {
     return [];
   } else if (len >= 6) {
@@ -40,46 +40,28 @@ export const getDNumberReg = (len: number) => {
   return `${len}D`;
 };
 
-export const get0xNumber = (len: number) => {
+export const get0xNumberReg = (len: number) => {
   return `0x${getKNumberReg(len)}`;
 };
 
 export const handle00Number = (numAns: string[]) => {
   return [
     getXNumberReg(numAns.length - 2),
-    ...getKNumberAns(numAns.length),
+    ...getKNumberRegAns(numAns.length),
     getDNumberReg(numAns.length),
     "Digit",
   ];
 };
 
 export const handle0xNumber = (numAns: string[]) => {
-  return [get0xNumber(numAns.length - 2), "Digit"];
+  return [get0xNumberReg(numAns.length - 2), "Digit"];
 };
 
 export const handlePureNumber = (numAns: string[]) => {
   return [
     getRegChars(numAns),
-    ...getKNumberAns(numAns.length),
+    ...getKNumberRegAns(numAns.length),
     `${numAns.length}D`,
     "Digit",
   ];
 };
-
-// export const handleNumber = (numAns: string) => {
-//   if (is00Number(numAns)) {
-//     return handle00Number(numAns);
-//   }
-
-//   if (isOxNumber(numAns)) {
-//     return handle0xNumber(numAns);
-//   }
-
-//   if (isMaxNumber(numAns)) {
-//     return ["Digit"];
-//   }
-
-//   if (isPureNumber(content)) {
-//     return handlePureNumber(numAns);
-//   }
-// };
