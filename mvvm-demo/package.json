@@ -1,0 +1,12 @@
+{
+  "name": "mvvm-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "http-server"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
