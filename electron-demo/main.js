@@ -1,4 +1,15 @@
-const { app, BrowserWindow, ipcMain, Notification } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  Notification,
+  protocol,
+} = require("electron");
+const path = require("path");
+
+const PROTOCOL = "atom";
+const HOST = "localhost";
+const LOCATION = `${PROTOCOL}://${HOST}`;
 
 let win;
 function createWindow() {
@@ -11,7 +22,7 @@ function createWindow() {
       devTools: true,
     },
   });
-  win.loadFile("index.html");
+  win.loadURL(LOCATION);
 }
 
 function handleIPC() {
@@ -20,7 +31,33 @@ function handleIPC() {
   });
 }
 
+protocol.registerSchemesAsPrivileged([
+  {
+    scheme: PROTOCOL,
+    privileges: {
+      standard: true,
+      secure: true,
+      allowServiceWorkers: true,
+      supportFetchAPI: true,
+      corsEnabled: true,
+    },
+  },
+]);
 app.whenReady().then(() => {
+  protocol.registerFileProtocol(PROTOCOL, (request, callback) => {
+    // TODO 关于文件目录结构及请求分发，需要重新梳理
+    const [pathname] = request.url.split("?");
+    const staticFileMatch = new RegExp(`${LOCATION}/(.*\\..*)`).exec(pathname);
+    const staticFilePath = staticFileMatch && staticFileMatch[1];
+    let filePath = "/index.html";
+    if (staticFilePath) {
+      filePath = `/${staticFilePath}`;
+    }
+    const absolutePath = path.normalize(`${app.getAppPath()}${filePath}`);
+    callback({
+      path: absolutePath,
+    });
+  });
   handleIPC();
   createWindow();
 });
