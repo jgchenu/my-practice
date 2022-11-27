@@ -45,7 +45,6 @@ protocol.registerSchemesAsPrivileged([
 ]);
 app.whenReady().then(() => {
   protocol.registerFileProtocol(PROTOCOL, (request, callback) => {
-    // TODO 关于文件目录结构及请求分发，需要重新梳理
     const [pathname] = request.url.split("?");
     const staticFileMatch = new RegExp(`${LOCATION}/(.*\\..*)`).exec(pathname);
     const staticFilePath = staticFileMatch && staticFileMatch[1];
