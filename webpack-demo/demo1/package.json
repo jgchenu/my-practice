@@ -1,0 +1,9 @@
+{
+  "name": "webpack5-demo1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf ./dist && webpack"
+  }
+}
