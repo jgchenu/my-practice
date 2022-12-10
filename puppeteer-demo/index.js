@@ -1,10 +1,9 @@
-// http://www.alloyteam.com/2020/01/14184/#prettyPhoto 参考文章
+// 参考 https://zhoujingchao.github.io/node/puppeteer/performance.html
 const puppeteer = require("puppeteer");
 const _ = require("lodash");
 const fs = require("fs");
 
 const url = "http://127.0.0.1:8080/";
-// const url = "https://cs.test.shopee.sg/dms/dispute/template/remark";
 
 const pageCount = 10;
 const cookies = [
@@ -62,10 +61,12 @@ async function createPageAndGetPerformance(browser, url) {
 
 async function createTargetPageAndCalculateAverage(browser, count, url) {
   const arr = new Array(count).fill(1);
-  const tasks = arr.map((_item, index) => {
-    return createPageAndGetPerformance(browser, url);
-  });
-  const ans = await Promise.all(tasks);
+  const ans = [];
+  for (const value of arr) {
+    const resultOneCase = await createPageAndGetPerformance(browser, url);
+    ans.push(resultOneCase);
+  }
+
   const averageResult = {};
   const keys = Object.keys(ans[0]);
   keys.forEach((key) => {
