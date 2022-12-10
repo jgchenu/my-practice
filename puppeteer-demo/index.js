@@ -68,12 +68,14 @@ async function createTargetPageAndCalculateAverage(browser, count, url) {
   }
 
   const averageResult = {};
-  const keys = Object.keys(ans[0]);
+  const firstResult = ans.shift();
+  const keys = Object.keys(firstResult);
   keys.forEach((key) => {
     averageResult[key] = _.meanBy(ans, (o) => o[key]);
   });
   return {
-    averageResult: averageResult,
+    averageSecondResult: averageResult,
+    firstResult,
     allResult: ans,
   };
 }
@@ -100,7 +102,7 @@ async function main() {
     .replace(/\./g, "-")
     .replace(/\//g, "");
   fs.writeFileSync(`${name}.json`, JSON.stringify(result, null, 2));
-  // browser.close();
+  browser.close();
 }
 
 main();
