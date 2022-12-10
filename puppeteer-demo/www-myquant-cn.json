@@ -1,0 +1,64 @@
+{
+  "averageResult": {
+    "cache": 15.75,
+    "dns": 0,
+    "tcp": 13.25,
+    "req": 34.25,
+    "res": 2,
+    "readycb": 17.25,
+    "fasrt": 384.25,
+    "loadcb": 1,
+    "ready": 725,
+    "load": 1109.75
+  },
+  "allResult": [
+    {
+      "cache": 58,
+      "dns": 0,
+      "tcp": 29,
+      "req": 32,
+      "res": 2,
+      "readycb": 17,
+      "fasrt": 462,
+      "loadcb": 1,
+      "ready": 750,
+      "load": 1213
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 34,
+      "res": 2,
+      "readycb": 18,
+      "fasrt": 451,
+      "loadcb": 1,
+      "ready": 723,
+      "load": 1174
+    },
+    {
+      "cache": 5,
+      "dns": 0,
+      "tcp": 24,
+      "req": 38,
+      "res": 1,
+      "readycb": 17,
+      "fasrt": 320,
+      "loadcb": 1,
+      "ready": 740,
+      "load": 1061
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 33,
+      "res": 3,
+      "readycb": 17,
+      "fasrt": 304,
+      "loadcb": 1,
+      "ready": 687,
+      "load": 991
+    }
+  ]
+}
