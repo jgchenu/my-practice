@@ -19,6 +19,6 @@ element.innerHTML = `
 <p>domReady: ${domReady}ms</p>
 <p>load: ${load}ms</p>
 `;
-// root.append(element);
+root.append(element);
 console.log("timing", timing);
 console.log("entries", entries);

@@ -1,8 +1,9 @@
+// http://www.alloyteam.com/2020/01/14184/#prettyPhoto 参考文章
 const puppeteer = require("puppeteer");
 const _ = require("lodash");
 const fs = require("fs");
 
-const url = "https://juejin.im";
+const url = "http://127.0.0.1:8080/";
 // const url = "https://cs.test.shopee.sg/dms/dispute/template/remark";
 
 const pageCount = 10;
@@ -54,7 +55,6 @@ async function createPageAndGetPerformance(browser, url) {
       const value = Math.round(firstParams - secondParams);
       value >= 0 && value < 36e5 && (result[item] = value);
     });
-    // getData.resourceList = JSON.stringify(performance.getEntries());
     return result;
   });
   return monitorData;
@@ -94,9 +94,12 @@ async function main() {
   );
 
   console.log("performances average", result);
-  const name = url.split("https://")[1].replace(/\./g, "-").replace(/\//g, "");
+  const name = url
+    .replace(/https?:\/\//, "")
+    .replace(/\./g, "-")
+    .replace(/\//g, "");
   fs.writeFileSync(`${name}.json`, JSON.stringify(result, null, 2));
-  browser.close();
+  // browser.close();
 }
 
 main();

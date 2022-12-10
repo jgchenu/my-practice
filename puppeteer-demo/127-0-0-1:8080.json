@@ -1,0 +1,136 @@
+{
+  "averageResult": {
+    "cache": 0,
+    "dns": 0,
+    "tcp": 0,
+    "req": 1.9,
+    "res": 0.9,
+    "readycb": 0,
+    "fasrt": 0.6,
+    "loadcb": 0,
+    "ready": 332.3,
+    "load": 333
+  },
+  "allResult": [
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 3,
+      "res": 2,
+      "readycb": 0,
+      "fasrt": 1,
+      "loadcb": 0,
+      "ready": 272,
+      "load": 273
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 2,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 0,
+      "loadcb": 0,
+      "ready": 288,
+      "load": 289
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 0,
+      "loadcb": 0,
+      "ready": 296,
+      "load": 297
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 0,
+      "loadcb": 0,
+      "ready": 304,
+      "load": 305
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 0,
+      "readycb": 0,
+      "fasrt": 0,
+      "loadcb": 0,
+      "ready": 311,
+      "load": 311
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 0,
+      "readycb": 0,
+      "fasrt": 1,
+      "loadcb": 0,
+      "ready": 354,
+      "load": 354
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 3,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 1,
+      "loadcb": 0,
+      "ready": 365,
+      "load": 366
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 2,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 1,
+      "loadcb": 0,
+      "ready": 387,
+      "load": 388
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 1,
+      "loadcb": 0,
+      "ready": 372,
+      "load": 372
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 4,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 1,
+      "loadcb": 0,
+      "ready": 374,
+      "load": 375
+    }
+  ]
+}
