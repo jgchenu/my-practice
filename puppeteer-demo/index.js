@@ -2,8 +2,27 @@ const puppeteer = require("puppeteer");
 const _ = require("lodash");
 const fs = require("fs");
 
+const url = "https://juejin.im";
+// const url = "https://cs.test.shopee.sg/dms/dispute/template/remark";
+
+const pageCount = 10;
+const cookies = [
+  {
+    name: "session-cookie",
+    domain: "juejin.im",
+    value: "xxx",
+    path: "/",
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+  },
+];
+
 async function createPageAndGetPerformance(browser, url) {
   const page = await browser.newPage();
+  await Promise.all(
+    cookies.map(async (cookie) => {
+      await page.setCookie(cookie);
+    })
+  );
   await page.goto(url, {
     waitUntil: ["load"],
   });
@@ -18,8 +37,8 @@ async function createPageAndGetPerformance(browser, url) {
       readycb: ["domContentLoadedEventEnd", "domContentLoadedEventStart"], // domContentLoaded回调函数耗时
       fasrt: ["domComplete", "domContentLoadedEventEnd"], // 首屏异步资源加载耗时，即domContentLoaded和load之间加载的资源，一般为图片加载，JS异步加载的资源
       loadcb: ["loadEventEnd", "loadEventStart"], // load回调函数耗时
-      ready: ["domContentLoadedEventEnd", "fetchStart"], // 	DOM Ready耗时，白屏时间
-      load: ["loadEventEnd", "fetchStart"], //	页面完全加载时间
+      ready: ["domContentLoadedEventEnd", "fetchStart"], //   DOM Ready耗时，白屏时间
+      load: ["loadEventEnd", "fetchStart"], //  页面完全加载时间
     };
     const result = {};
     const performance =
@@ -58,17 +77,24 @@ async function createTargetPageAndCalculateAverage(browser, count, url) {
   };
 }
 
-const url = "https://www.myquant.cn/";
-// "https://juejin.im"
 async function main() {
   const browser = await puppeteer.launch({
     headless: false,
-    args: ["--no-sandbox", "--disable-setuid-sandbox", "--no-first-run"],
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--no-first-run",
+      "--single-process",
+    ],
   });
-  const result = await createTargetPageAndCalculateAverage(browser, 4, url);
+  const result = await createTargetPageAndCalculateAverage(
+    browser,
+    pageCount,
+    url
+  );
 
   console.log("performances average", result);
-  const name = url.split("https://")[1].replace(/\./g, "-").replace("/", "");
+  const name = url.split("https://")[1].replace(/\./g, "-").replace(/\//g, "");
   fs.writeFileSync(`${name}.json`, JSON.stringify(result, null, 2));
   browser.close();
 }
