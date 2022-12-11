@@ -1,4 +1,6 @@
 // 参考 https://zhoujingchao.github.io/node/puppeteer/performance.html
+// 参考 https://www.gunhawk.icu/article/29
+// 使用性能分析时, 不能使用headless模式, 否则录制效果会不准确
 const puppeteer = require("puppeteer");
 const _ = require("lodash");
 const fs = require("fs");
