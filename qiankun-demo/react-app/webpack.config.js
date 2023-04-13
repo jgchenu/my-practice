@@ -8,9 +8,10 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 const webpack = require('webpack');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const alias = require('./alias');
 const __DEV__ = process.env.NODE_ENV === 'development';
+const ANY = process.env.ANY;
 const __MOCK__ = process.env.MOCK;
 
 const ROOT_PATH = path.resolve(__dirname, '.');
@@ -174,12 +175,20 @@ const config = {
       chunkFilename: __DEV__ ? '[name].css' : '[name]-[contenthash].css',
     }),
     new AntdDayjsWebpackPlugin(),
-  ],
+    ANY && new BundleAnalyzerPlugin(),
+  ].filter(Boolean),
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       ...alias,
     },
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    '@remix-run/router': 'RemixRouter',
+    'react-router-dom': 'ReactRouterDOM',
+    'react-router': 'ReactRouter',
   },
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
