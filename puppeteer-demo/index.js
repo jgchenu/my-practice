@@ -1,3 +1,6 @@
+// 参考 https://zhoujingchao.github.io/node/puppeteer/performance.html
+// 参考 https://www.gunhawk.icu/article/29
+// 使用性能分析时, 不能使用headless模式, 否则录制效果会不准确
 const puppeteer = require("puppeteer");
 const _ = require("lodash");
 const fs = require("fs");
@@ -48,8 +51,8 @@ async function createPageAndGetPerformance(browser, url) {
       readycb: ["domContentLoadedEventEnd", "domContentLoadedEventStart"], // domContentLoaded回调函数耗时
       fasrt: ["domComplete", "domContentLoadedEventEnd"], // 首屏异步资源加载耗时，即domContentLoaded和load之间加载的资源，一般为图片加载，JS异步加载的资源
       loadcb: ["loadEventEnd", "loadEventStart"], // load回调函数耗时
-      ready: ["domContentLoadedEventEnd", "fetchStart"], // 	DOM Ready耗时，白屏时间
-      load: ["loadEventEnd", "fetchStart"], //	页面完全加载时间
+      ready: ["domContentLoadedEventEnd", "fetchStart"], //   DOM Ready耗时，白屏时间
+      load: ["loadEventEnd", "fetchStart"], //  页面完全加载时间
     };
     const result = {};
     const performance =

@@ -1,0 +1,136 @@
+{
+  "averageSecondResult": {
+    "cache": 0,
+    "dns": 0,
+    "tcp": 0,
+    "req": 1,
+    "res": 0.7777777777777778,
+    "readycb": 0,
+    "fasrt": 0.4444444444444444,
+    "loadcb": 0,
+    "ready": 42.55555555555556,
+    "load": 42.888888888888886
+  },
+  "firstResult": {
+    "cache": 0,
+    "dns": 0,
+    "tcp": 0,
+    "req": 2,
+    "res": 129,
+    "readycb": 0,
+    "fasrt": 1,
+    "loadcb": 0,
+    "ready": 234,
+    "load": 234
+  },
+  "allResult": [
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 0,
+      "loadcb": 0,
+      "ready": 43,
+      "load": 44
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 0,
+      "readycb": 0,
+      "fasrt": 0,
+      "loadcb": 0,
+      "ready": 41,
+      "load": 41
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 0,
+      "readycb": 0,
+      "fasrt": 0,
+      "loadcb": 0,
+      "ready": 42,
+      "load": 42
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 0,
+      "loadcb": 0,
+      "ready": 46,
+      "load": 47
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 1,
+      "loadcb": 0,
+      "ready": 44,
+      "load": 45
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 1,
+      "loadcb": 0,
+      "ready": 43,
+      "load": 43
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 1,
+      "loadcb": 0,
+      "ready": 43,
+      "load": 43
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 1,
+      "loadcb": 0,
+      "ready": 41,
+      "load": 41
+    },
+    {
+      "cache": 0,
+      "dns": 0,
+      "tcp": 0,
+      "req": 1,
+      "res": 1,
+      "readycb": 0,
+      "fasrt": 0,
+      "loadcb": 0,
+      "ready": 40,
+      "load": 40
+    }
+  ]
+}
