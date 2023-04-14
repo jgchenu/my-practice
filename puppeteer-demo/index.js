@@ -2,8 +2,38 @@ const puppeteer = require("puppeteer");
 const _ = require("lodash");
 const fs = require("fs");
 
+// const url = "https://cs.test.shopee.sg/user/manage/account";
+// const url = "https://cs.test.shopee.sg/dms/dispute/template/remark";
+// const url = "https://cs.test.shopee.sg/dispute/template/email";
+// const url = "https://baidu.com";
+// const url = "https://help.test.shopee.sg/portal/webform/690601af068648798d5f5c4aa74b5b56";
+const url = "https://cs.shopee.sg/dms/dispute/template/remark";
+
+const pageCount = 50;
+const cookies = [
+  {
+    name: "SPC_SCS",
+    domain: ".cs.shopee.sg",
+    value: "4a702bdf96814da2a4f0439c766f849f",
+    path: "/",
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+  },
+  // {
+  //   name: "_SPC_PFB",
+  //   domain: ".cs.shopee.sg",
+  //   value: "pfb-dms-v5-1-8",
+  //   path: "/",
+  //   expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+  // },
+];
+
 async function createPageAndGetPerformance(browser, url) {
   const page = await browser.newPage();
+  await Promise.all(
+    cookies.map(async (cookie) => {
+      await page.setCookie(cookie);
+    })
+  );
   await page.goto(url, {
     waitUntil: ["load"],
   });
@@ -35,7 +65,6 @@ async function createPageAndGetPerformance(browser, url) {
       const value = Math.round(firstParams - secondParams);
       value >= 0 && value < 36e5 && (result[item] = value);
     });
-    // getData.resourceList = JSON.stringify(performance.getEntries());
     return result;
   });
   return monitorData;
@@ -43,34 +72,44 @@ async function createPageAndGetPerformance(browser, url) {
 
 async function createTargetPageAndCalculateAverage(browser, count, url) {
   const arr = new Array(count).fill(1);
-  const tasks = arr.map((_item, index) => {
-    return createPageAndGetPerformance(browser, url);
-  });
-  const ans = await Promise.all(tasks);
+  const ans = [];
+  for (const value of arr) {
+    const result = await createPageAndGetPerformance(browser, url);
+    ans.push(result);
+  }
   const averageResult = {};
-  const keys = Object.keys(ans[0]);
+  const firstResult = ans.shift();
+  const keys = Object.keys(firstResult);
   keys.forEach((key) => {
     averageResult[key] = _.meanBy(ans, (o) => o[key]);
   });
   return {
-    averageResult: averageResult,
+    firstResult,
+    averageSecondResult: averageResult,
     allResult: ans,
   };
 }
 
-const url = "https://www.myquant.cn/";
-// "https://juejin.im"
 async function main() {
   const browser = await puppeteer.launch({
     headless: false,
-    args: ["--no-sandbox", "--disable-setuid-sandbox", "--no-first-run"],
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--no-first-run",
+      "--single-process",
+    ],
   });
-  const result = await createTargetPageAndCalculateAverage(browser, 4, url);
+  const result = await createTargetPageAndCalculateAverage(
+    browser,
+    pageCount,
+    url
+  );
 
   console.log("performances average", result);
-  const name = url.split("https://")[1].replace(/\./g, "-").replace("/", "");
+  const name = url.split("https://")[1].replace(/\./g, "-").replace(/\//g, "");
   fs.writeFileSync(`${name}.json`, JSON.stringify(result, null, 2));
-  browser.close();
+  // browser.close();
 }
 
 main();
