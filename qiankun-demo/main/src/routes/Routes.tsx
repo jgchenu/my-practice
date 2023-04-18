@@ -28,6 +28,14 @@ const routes = [
         path: 'react-app/*',
         element: <MacroApp />,
       },
+      {
+        path: 'react-app2/*',
+        element: <MacroApp />,
+      },
+      {
+        path: 'react-app3/*',
+        element: <MacroApp />,
+      },
     ],
   },
 ];

@@ -34,7 +34,7 @@ const config = {
     },
     compress: true,
     open: false,
-    port: 8081,
+    port: 8091,
     host: '0.0.0.0',
     hot: true,
     static: {
