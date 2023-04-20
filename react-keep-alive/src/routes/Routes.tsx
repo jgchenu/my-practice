@@ -1,33 +1,35 @@
 import React from 'react';
-import { Navigate, RouteObject, useRoutes } from 'react-router-dom';
+import { Route, RouteObject, Routes } from 'react-router-dom';
 
 import Dashboard from '$src/containers/Dashboard';
 import Detail from '$src/containers/Detail/Detail';
+// import { KeepAlive } from '$src/components/KeepAlive';
+import Demo from '$src/containers/Demo';
 import { KeepAlive } from '$src/components/KeepAlive';
 
 const routes: RouteObject[] = [
   {
-    path: '/',
-    element: <Dashboard />,
-    children: [
-      { index: true, element: <Navigate to="/detail/1?session=1001" /> },
-      {
-        path: '/detail',
-        element: <KeepAlive />,
-        children: [
-          {
-            path: ':id',
-            element: <Detail />,
-          },
-        ],
-      },
-    ],
+    path: 'detail/:id',
+    element: <Detail />,
+  },
+  {
+    path: 'demo',
+    element: <Demo />,
   },
 ];
 
-function Routes() {
-  const element = useRoutes(routes);
-  return element;
+function Routers() {
+  return (
+    <Routes>
+      <Route path="/" element={<Dashboard />}>
+        <Route path="*" element={<KeepAlive />}>
+          {routes.map((item) => (
+            <Route key={item.path} path={item.path} element={item.element}></Route>
+          ))}
+        </Route>
+      </Route>
+    </Routes>
+  );
 }
 
-export default Routes;
+export default Routers;

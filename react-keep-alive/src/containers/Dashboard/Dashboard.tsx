@@ -8,6 +8,8 @@ function Dashboard() {
     () => [
       { to: '/detail/1?session=1001', text: 'Detail 1' },
       { to: '/detail/2?session=1002', text: 'Detail 2' },
+      { to: '/detail/3?session=1003', text: 'Detail 3' },
+      { to: '/demo', text: 'demo' },
     ],
     [],
   );
