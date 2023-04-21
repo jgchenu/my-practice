@@ -9,6 +9,8 @@ const defaultLinks: LinkItem[] = [
   { to: '/demo', label: 'Demo' },
   { to: '/redux-demo', label: 'Tasks' },
   { to: '/react-app', label: 'Sub React App' },
+  { to: '/react-app2', label: 'Sub React App2' },
+  { to: '/react-app3', label: 'Sub React App3' },
 ];
 
 type LinkItem = {
@@ -24,7 +26,7 @@ function Dashboard() {
 
   useEffect(() => {
     window.addEventListener('links', (e: CustomEvent<{ activeRule: string; links: LinkItem[] }>) => {
-      console.log(e.detail);
+      // console.log(e.detail);
       const data = e.detail;
       setLinks((prev) =>
         prev.map((item) => {

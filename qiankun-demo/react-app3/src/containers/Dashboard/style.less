@@ -1,0 +1,23 @@
+.container {
+  height: 100%;
+
+  .header {
+    height: @headerHeight;
+    box-sizing: border-box;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: lightgoldenrodyellow;
+  }
+
+  .content {
+    display: flex;
+    height: calc(100% - @headerHeight);
+
+    .sub-content {
+      display: flex;
+      height: 100%;
+      flex: 1;
+      padding: 20px;
+    }
+  }
+}

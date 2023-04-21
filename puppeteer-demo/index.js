@@ -5,17 +5,29 @@ const puppeteer = require("puppeteer");
 const _ = require("lodash");
 const fs = require("fs");
 
-const url = "http://127.0.0.1:8080/";
+// const url = "https://cs.test.shopee.sg/user/manage/account";
+// const url = "https://cs.test.shopee.sg/dms/dispute/template/remark";
+// const url = "https://cs.test.shopee.sg/dispute/template/email";
+// const url = "https://baidu.com";
+// const url = "https://help.test.shopee.sg/portal/webform/690601af068648798d5f5c4aa74b5b56";
+const url = "https://cs.shopee.sg/dms/dispute/template/remark";
 
-const pageCount = 10;
+const pageCount = 50;
 const cookies = [
   {
-    name: "session-cookie",
-    domain: "juejin.im",
-    value: "xxx",
+    name: "SPC_SCS",
+    domain: ".cs.shopee.sg",
+    value: "4a702bdf96814da2a4f0439c766f849f",
     path: "/",
     expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
   },
+  // {
+  //   name: "_SPC_PFB",
+  //   domain: ".cs.shopee.sg",
+  //   value: "pfb-dms-v5-1-8",
+  //   path: "/",
+  //   expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+  // },
 ];
 
 async function createPageAndGetPerformance(browser, url) {
@@ -65,10 +77,9 @@ async function createTargetPageAndCalculateAverage(browser, count, url) {
   const arr = new Array(count).fill(1);
   const ans = [];
   for (const value of arr) {
-    const resultOneCase = await createPageAndGetPerformance(browser, url);
-    ans.push(resultOneCase);
+    const result = await createPageAndGetPerformance(browser, url);
+    ans.push(result);
   }
-
   const averageResult = {};
   const firstResult = ans.shift();
   const keys = Object.keys(firstResult);
@@ -76,8 +87,8 @@ async function createTargetPageAndCalculateAverage(browser, count, url) {
     averageResult[key] = _.meanBy(ans, (o) => o[key]);
   });
   return {
-    averageSecondResult: averageResult,
     firstResult,
+    averageSecondResult: averageResult,
     allResult: ans,
   };
 }
@@ -99,12 +110,9 @@ async function main() {
   );
 
   console.log("performances average", result);
-  const name = url
-    .replace(/https?:\/\//, "")
-    .replace(/\./g, "-")
-    .replace(/\//g, "");
+  const name = url.split("https://")[1].replace(/\./g, "-").replace(/\//g, "");
   fs.writeFileSync(`${name}.json`, JSON.stringify(result, null, 2));
-  browser.close();
+  // browser.close();
 }
 
 main();

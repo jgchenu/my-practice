@@ -3,6 +3,8 @@ import { initGlobalState, MicroAppStateActions, registerMicroApps } from 'qianku
 
 enum MicroApp {
   ReactApp = '/react-app',
+  ReactApp2 = '/react-app2',
+  ReactApp3 = '/react-app3',
 }
 
 const dispatchEvent = (event: string, data: any) => {
@@ -19,12 +21,36 @@ const dispatchMainEvent = (data: any) => {
 
 const microApps = [
   {
-    name: 'react app', // app name registered
+    name: 'reactapp', // app name registered
     entry: process.env.reactAppEntry || `${MicroApp.ReactApp}-entry`,
     container: '#subapp-viewport',
     activeRule: MicroApp.ReactApp,
     props: {
       basename: MicroApp.ReactApp,
+      dispatchEvent: dispatchMainEvent,
+      addEventListener: window.addEventListener,
+      removeEventListener: window.removeEventListener,
+    },
+  },
+  {
+    name: 'reactapp2', // app name registered
+    entry: process.env.reactAppEntry2 || `${MicroApp.ReactApp}-entry`,
+    container: '#subapp-viewport2',
+    activeRule: MicroApp.ReactApp2,
+    props: {
+      basename: MicroApp.ReactApp2,
+      dispatchEvent: dispatchMainEvent,
+      addEventListener: window.addEventListener,
+      removeEventListener: window.removeEventListener,
+    },
+  },
+  {
+    name: 'reactapp3', // app name registered
+    entry: process.env.reactAppEntry3 || `${MicroApp.ReactApp}-entry`,
+    container: '#subapp-viewport3',
+    activeRule: MicroApp.ReactApp3,
+    props: {
+      basename: MicroApp.ReactApp3,
       dispatchEvent: dispatchMainEvent,
       addEventListener: window.addEventListener,
       removeEventListener: window.removeEventListener,

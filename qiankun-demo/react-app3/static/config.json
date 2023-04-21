@@ -1,0 +1,19 @@
+{
+  "sidebar": [
+    {
+      "label": "react app one",
+      "key": "/react-app3/one",
+      "to": "/react-app3/one"
+    },
+    {
+      "label": "react app two",
+      "key": "/react-app3/two",
+      "to": "/react-app3/two"
+    },
+    {
+      "label": "react app three",
+      "key": "/react-app3/three",
+      "to": "/react-app3/three"
+    }
+  ]
+}
