@@ -41,11 +41,11 @@ for (let col = range.s.c + 2; col <= range.e.c; col++) {
   fs.writeFileSync(`./l10n/app_${lan}.arb`, jsonContent);
   // console.log(lan, "JSON 对象已成功生成。");
   // 判断/Users/jgchen/Desktop/follower_tracking_app/lib/l10n 是否存在，重新写入
-  if (!fs.existsSync("/Users/jgchen/Desktop/follower_tracking_app/lib/l10n")) {
-    fs.mkdirSync("/Users/jgchen/Desktop/follower_tracking_app/lib/l10n");
+  if (!fs.existsSync("/Users/jgchen/Desktop/ins_follower/follower_tracking_app/lib/l10n")) {
+    fs.mkdirSync("/Users/jgchen/Desktop/ins_follower/follower_tracking_app/lib/l10n");
   }
   fs.writeFileSync(
-    `/Users/jgchen/Desktop/follower_tracking_app/lib/l10n/app_${lan}.arb`,
+    `/Users/jgchen/Desktop/ins_follower/follower_tracking_app/lib/l10n/app_${lan}.arb`,
     jsonContent
   );
   console.log(lan, "目标仓库: JSON 对象已成功生成。");

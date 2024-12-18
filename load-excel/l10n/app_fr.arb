@@ -124,5 +124,6 @@
   "exposure": "Exposition",
   "exposure_note": "Basé sur le nombre total d'admirateurs",
   "exposure_hits": "Coups d'éclat",
-  "exposure_times": "fois"
+  "exposure_times": "fois",
+  "try_boom_ai": "Plus de followers ? Essayez BoomAI maintenant !"
 }
